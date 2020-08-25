@@ -1,0 +1,9 @@
+.sidebar {
+  flex: 0.35;
+}
+
+.sidebar__header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
