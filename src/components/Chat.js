@@ -8,11 +8,23 @@ import React, { useEffect, useState } from "react";
 import "./Chat.css";
 
 const Chat = () => {
+  const [input, setInput] = useState("");
   const [seed, setSeed] = useState(" ");
 
   useEffect(() => {
     setSeed(Math.floor(Math.random() * 5000));
   }, []);
+
+  const senMassege = (e) => {
+    e.preventDefault();
+    console.log(input);
+    setInput("");
+  };
+
+  const onInputChange = ({ target }) => {
+    const { value } = target;
+    setInput(value);
+  };
   return (
     <div className="chat">
       <div className="chat__header">
@@ -45,8 +57,15 @@ const Chat = () => {
         <InsertEmoticonIcon />
 
         <form>
-          <input type="text" />
-          <button>Send a massage</button>
+          <input
+            value={input}
+            onChange={onInputChange}
+            type="text"
+            placeholder="Type a massege"
+          />
+          <button onClick={senMassege} type="submit">
+            Send a massage
+          </button>
         </form>
         <MicIcon />
       </div>
