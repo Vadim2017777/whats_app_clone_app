@@ -4,12 +4,14 @@ import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import { AttachFile, MoreVert, SearchOutlined } from "@material-ui/icons";
 
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 import "./Chat.css";
 
 const Chat = () => {
   const [input, setInput] = useState("");
   const [seed, setSeed] = useState(" ");
+  const { roomId } = useParams();
 
   useEffect(() => {
     setSeed(Math.floor(Math.random() * 5000));

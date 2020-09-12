@@ -15,9 +15,15 @@ import "./Sidebar.css";
 function Sidebar() {
   const [rooms, setRooms] = useState([]);
   useEffect(() => {
-    db.collection("rooms").onSnapshot((snapshot) =>
-      setRooms(snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() })))
-    );
+    const unsubscribe = db
+      .collection("rooms")
+      .onSnapshot((snapshot) =>
+        setRooms(snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() })))
+      );
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
   return (
     <div className="sidebar">
@@ -45,10 +51,8 @@ function Sidebar() {
       <div className="sidebar__chats">
         <SidebarChat addNewChat={true} />
         {rooms.map((room) => (
-          <SidebarChat key={rooms.id} name={room.data.name} />
+          <SidebarChat key={room.id} id={room.id} name={room.data.name} />
         ))}
-        <SidebarChat />
-        <SidebarChat />
       </div>
     </div>
   );
