@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useStateValue } from "../StateProvider";
 
 import db from "../firebase";
 
@@ -9,11 +10,11 @@ import SearchOutlined from "@material-ui/icons/SearchOutlined";
 import DonutLargeIcon from "@material-ui/icons/DonutLarge";
 import ChatIcon from "@material-ui/icons/Chat";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-
 import "./Sidebar.css";
 
 function Sidebar() {
   const [rooms, setRooms] = useState([]);
+  const [{ user }] = useStateValue();
   useEffect(() => {
     const unsubscribe = db
       .collection("rooms")
@@ -28,7 +29,7 @@ function Sidebar() {
   return (
     <div className="sidebar">
       <div className="sidebar__header">
-        <Avatar />
+        <Avatar src={user?.photoURL} />
 
         <div className="sidebar_headerRight">
           <IconButton>

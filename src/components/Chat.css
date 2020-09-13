@@ -24,7 +24,7 @@
   color: grey;
 }
 
-.chat_message {
+.chat__message {
   position: relative;
   margin-bottom: 20px;
   font-size: 16px;
