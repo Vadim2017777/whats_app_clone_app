@@ -6,7 +6,7 @@
 
 .chat__header {
   display: flex;
-  padding: 20px;
+  padding: 26px;
   align-items: center;
   border-bottom: 1px solid lightgray;
 }
